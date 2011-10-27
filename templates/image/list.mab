@@ -3,7 +3,7 @@ ul do
   @images.sort_by(&:label).each do |image|
     li do
       a :href => "/admin/image/#{image.key}/" do
-          img :src => "/images/#{image.key}?size=thumb", 
+          img :src => "/images/#{image.key}?size=thumb",
           :title => image.label, :alt => image.label
       end
     end

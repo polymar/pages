@@ -286,7 +286,7 @@
 				if(table.config.debug) { benchmark("Built headers:", time); log($tableHeaders); }
 				
 				return $tableHeaders;
-				
+
 			};
 						
 		   	function checkCellColSpan(table, headerArr, row) {
@@ -350,7 +350,7 @@
 				var l = a.length;
 				for(var i=0; i < l; i++) {
 					if(a[i][0] == v) {
-						return true;	
+						return true;
 					}
 				}
 				return false;
@@ -546,7 +546,7 @@
 							// stop normal event by returning false
 							return false;
 						}
-					// cancel selection	
+					// cancel selection
 					}).mousedown(function() {
 						if(config.cancelSelection) {
 							this.onselectstart = function() {return false};

@@ -1,4 +1,4 @@
---- 
+---
 format: mab
 blog: ""
 title: ""
@@ -8,6 +8,6 @@ author: Example
 summary: ""
 content: |-
   p "Hello world."
-  
+
   p "This is my first app.. :)"
 key: home

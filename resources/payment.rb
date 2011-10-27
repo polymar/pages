@@ -1,12 +1,12 @@
 module Pages
-  
+
   module Resources
-    
+
     class Payment < Default
-      
+
     # special URL just payment return url -> get with all the parameters related to the payment in the query
-    on( [ :get, :post ], [ 'payment' ] ) { 
-      
+    on( [ :get, :post ], [ 'payment' ] ) {
+
       info = { :key => params['transactionId'],
                :transaction_date => params['transactionDate'],
                :email => params['buyerEmail'],
@@ -17,10 +17,10 @@ module Pages
                :operation => params['operation']
       }
       controller.store( info ) #saving the payment info in a yml file with name = transactionId
-      
+
       #status == PI : indicates the payment has been initiated.
       #status == PS : indicates that the payment transaction was successful.
-      #status == PR : indicates the reserve transaction was successful. 
+      #status == PR : indicates the reserve transaction was successful.
       if (params['status'] == 'PI' || params['status'] == 'PS' || params['status'] == 'PR')
         redirect('/thank-you')
       else
@@ -30,8 +30,8 @@ module Pages
         #status == SE : indicates a temporary system unavailable error
         redirect('/donation-failed')
       end
-    }  
-    
+    }
+
     # special URL just payment notification -> post that confirms the payment
     on( [ :get, :post ], [ 'payment-notification' ] ) {
       info = { :key => query['transactionId'],
@@ -46,12 +46,12 @@ module Pages
       controller.notification( info ) #updating the payment info with the new information.
       #redirect('/thank-you') #just return something.
     }
-    
+
     #placeholder for a fake donation
-     on( :post, [ 'donation' ] ) { 
+     on( :post, [ 'donation' ] ) {
        redirect('/thank-you')
      }
-      
+
     end
   end
 end

@@ -1,6 +1,6 @@
-div.quick_add do 
+div.quick_add do
   a.open 'Upload a new image.', :href => '#'
-  form.image :action => '/admin/image/', :method => 'post', 
+  form.image :action => '/admin/image/', :method => 'post',
     :enctype => 'multipart/form-data' do
     a.close do
       img :src => '/images/icons/lime/16x16/box_closed.png',
@@ -10,7 +10,7 @@ div.quick_add do
       property :label => 'Title', :name => 'image.title', :type => :text,
         :value => '', :required => true,
         :help => 'The title of the for use in listings and captions.'
-      property :label => 'Select File ...', :name => 'image.file', 
+      property :label => 'Select File ...', :name => 'image.file',
         :type => :file, :required => true, :options => { :size => 10 }
     end
     buttons [{ :label => 'Upload Image', :type => :submit }]

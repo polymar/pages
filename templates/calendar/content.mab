@@ -8,23 +8,23 @@ p.subtitle @calendar.summary if @calendar.summary
 div.events do
 
  	@calendar.events.sort_by(&:date).reverse[0..4].each do | event |
-	
+
 	  h2 do
 	    a event.title, :href => "/#{event.name}/"
 	  end
-	  
+
     if (Date === entry.published or Time === entry.published)
       p.byline do
         text ' on '; span.date event.date.strftime('%A, %b %d, %Y %H:%m %z')
       end
 	end
-	  
+
     format( :content => event.content, :format => event.format )
-    
+
     p do
       a 'More ...', :href => "/#{event.name}/"
     end
-    
+
 	end
 
 end

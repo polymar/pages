@@ -1,9 +1,9 @@
 module Pages
-	
-	module Models 
-		
+
+	module Models
+
 		class Gallery < Default
-		  
+
 		  def self.[]( domain )
         Class.new( self ) do
           include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
@@ -25,18 +25,18 @@ module Pages
 
         end
       end
-			
+
 			def self.associate( domain )
   			has_many :images, :class => Pages::Models::Image[ domain ]
   		end
-			
+
       DISPLAYS = [ ['Album', 'Album' ], ['Slideshow','Slideshow'] ]
-      
+
 			def self.displays; DISPLAYS; end
-			
+
 		end
-		
+
 	end
-	
+
 end
-				
+

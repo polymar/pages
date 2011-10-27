@@ -1,9 +1,9 @@
 div.property :id => @name do
   label @label
-  input.file({ 
-    :type => :file, 
+  input.file({
+    :type => :file,
     :class => @required ? 'required' : '' ,
-    :name => @name, :value => @value 
+    :name => @name, :value => @value
   }.merge( @options||{} ) )
   p.help do
     text @help

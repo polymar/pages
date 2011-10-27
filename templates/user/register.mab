@@ -5,25 +5,25 @@ layout :admin, :title => 'Register', :name => 'register',
     p.warning 'Sorry, email already in use.' if @retry
     form :action =>request.url, :method => 'POST' do
       properties do
-        property :label => 'Email', :type => 'text', 
+        property :label => 'Email', :type => 'text',
           :name => 'user.email', :value => ''
-        property :label => 'Password', :type => 'password', 
+        property :label => 'Password', :type => 'password',
           :name => 'user.password', :value => ''
-		property :label => 'Firstname', :type => 'text', 
+		property :label => 'Firstname', :type => 'text',
 	      :name => 'user.firstname', :value => ''
-		property :label => 'Middle Initial', :type => 'text', 
+		property :label => 'Middle Initial', :type => 'text',
 	      :name => 'user.middle', :value => ''
-		property :label => 'Lastname', :type => 'text', 
+		property :label => 'Lastname', :type => 'text',
 	      :name => 'user.lastname', :value => ''
-		property :label => 'Address', :type => 'text', 
+		property :label => 'Address', :type => 'text',
 	      :name => 'user.address', :value => ''
-		property :label => 'City', :type => 'text', 
+		property :label => 'City', :type => 'text',
 	      :name => 'user.city', :value => ''
-		property :label => 'State', :type => 'text', 
+		property :label => 'State', :type => 'text',
 	      :name => 'user.state', :value => ''
-		property :label => 'Zip', :type => 'text', 
+		property :label => 'Zip', :type => 'text',
 	      :name => 'user.zip', :value => ''
-		property :label => 'Phone Number', :type => 'text', 
+		property :label => 'Phone Number', :type => 'text',
 	      :name => 'user.phone', :value => ''
 		property :label => 'Role', :type => 'text', :name => 'user.role', :value => 'Member'
       end

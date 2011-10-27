@@ -2,14 +2,14 @@ require 'net/http'
 require 'json'
 require 'lib/short_url'
 require 'logger'
-  
+
 module Twitter
   class Client
-  
+
     def initialize( auth )
       @auth = auth
     end
-    
+
     # public method for updating twitter status
     def update_status( status ) # status = { :message => 'new post on ruby', :url => 'http://www.ruby-lang.com' }
       message = status[:message]
@@ -26,14 +26,14 @@ module Twitter
         call( 'statuses/update', { :status => posted } , :post )
       end
     end
-    
+
     # public method for getting public timelines
     def public_timeline
       call( 'statuses/public_timeline.json' )
     end
-    
+
     private
-    
+
     def call( path, params = {}, method = :get )
       if method == :get
         logger.info "Calling #{get_url( path, params ) } ..."
@@ -44,7 +44,7 @@ module Twitter
 	      request.set_form_data( params )
       end
       request.basic_auth( login, password )
-      response = Net::HTTP.start( 'twitter.com' ) do |h| 
+      response = Net::HTTP.start( 'twitter.com' ) do |h|
         h.request( request )
       end
       logger.info "tweet: " + response.code
@@ -52,7 +52,7 @@ module Twitter
       logger.info "Success!"
       JSON.parse( response.body )
     end
-    
+
     def get_url( path, params )
       "http://twitter.com/#{path}.json#{query(params)}"
     end
@@ -60,7 +60,7 @@ module Twitter
     def post_url( path )
       "http://twitter.com/#{path}.json"
     end
-    
+
     def query( params )
       return '' if params.nil? or params.empty?
       params.inject('?') { |q,p| q << "#{p[0]}=#{p[1]}&" }
@@ -69,17 +69,17 @@ module Twitter
     def login
       @auth[:user]
     end
-    
+
     def password
       @auth[:password]
-    end    
-    
+    end
+
     def logger
       @logger ||= Logger.new( $stderr )
     end
-    
+
   end
-  
+
 end
 
 # client = Twitter::Client.new( :user => 'duckonice', :password => 'bolognasalvati' )
@@ -87,23 +87,23 @@ end
 #  resp = client.update_status( { :message => 'testing from' } )
 #  p resp
 # rescue Object => e
-#  puts "Log to logger message: #{e.message}" 
+#  puts "Log to logger message: #{e.message}"
 # end
 # begin
 #  resp = client.update_status( { :url => 'http://www.gazzetta.it' } )
 #  p resp
 # rescue Object => e
-#  puts "Log to logger message: #{e.message}" 
+#  puts "Log to logger message: #{e.message}"
 # end
 # begin
 #  resp = client.update_status( { :message => 'testing from' , :url => 'http://www.google.com' } )
 #  p resp
 # rescue Object => e
-#  puts "Log to logger message: #{e.message}" 
+#  puts "Log to logger message: #{e.message}"
 # end
 # begin
 #  resp = client.update_status( { :ciao => 'testing from' } )
 #  p resp
 # rescue Object => e
-#  puts "Log to logger message: #{e.message}" 
+#  puts "Log to logger message: #{e.message}"
 # end

@@ -14,16 +14,16 @@ html do
       link :type => 'text/css', :rel => 'stylesheet', :href => '/css/album.css'
     end
   end
-  
+
   body do
-    div.page do 
+    div.page do
 
       [ :banner, :sidebar ].each { |name| self << story( name ) rescue nil }
 
       div.main.gallery :id => @name do
-    
+
         h1 @gallery.title if @gallery.title?
-        
+
         images = @gallery.images
         case @gallery[:display]
         when 'Slideshow'
@@ -45,12 +45,12 @@ html do
           end
         end
       end
-      
+
       div.footer do
         story :footer
       end
     end
 
   end
-  
+
 end

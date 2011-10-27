@@ -16,7 +16,7 @@ module Pages
         obj.save
       end
       def delete( name ) ; find( name ).delete ; end
-      
+
       def assign( assigns )
         assigns[ :key ] ||= assigns['title'].downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'')
         assigns[ :published ] ||= Time.now

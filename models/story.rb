@@ -1,14 +1,14 @@
 module Pages
-	
-	module Models 
-		
+
+	module Models
+
 		class Story < Default
-		  
+
 		  def self.[]( domain )
         Class.new( self ) do
           include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
           associate( domain )
-          
+
           # callback from filebase before deleting
           before_delete do |obj|
             g = Pages::Models[ 'blog' ][ domain ].find( obj.blog )
@@ -17,15 +17,15 @@ module Pages
             end
             obj
           end
-          
+
         end
       end
-		  
+
 		  def associate( domain )
   		  has_one :blog, :class => Pages::Models::Blog[ domain ]
   		  has_many :comments, :class => Pages::Models::Comment[ domain ]
   		end
-  		
+
   		def comment_number
         n = comments.size
         case n
@@ -37,26 +37,26 @@ module Pages
           "#{n} Comments"
         end
       end
-			
-			FORMATS = [ 
+
+			FORMATS = [
 			  ['Formatted Text','wysiwyg'],
-        ['Plain Text','text'], 
-        ['HTML','html'], 
+        ['Plain Text','text'],
+        ['HTML','html'],
         ['Textile','textile']
       ]
-      
+
       LAYOUTS = [ 'home', 'head', 'menu', 'banner', 'sidebar', 'footer', 'feed']
-            
+
 			def self.formats
 			  FORMATS
 			end
-			
+
 			def self.layouts
 			  LAYOUTS
 		  end
-							
+
 		end
-		
+
 	end
-	
+
 end

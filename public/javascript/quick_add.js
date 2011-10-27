@@ -1,4 +1,4 @@
-$(document).ready( function() { 
+$(document).ready( function() {
   $('div.quick_add a.open').click( function() {
     $(this).hide(); $(this).next().slideDown();
   });

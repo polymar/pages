@@ -1,14 +1,14 @@
---- 
+---
 twitter_password: none
 name: Pages.CMS
-roles: 
+roles:
 - Admin
 - Member
 twitter_account: none
 title: hello world
 domain: localhost
 description: sample app.
-Admin: 
+Admin:
 - property
 - story
 - image
@@ -17,6 +17,6 @@ Admin:
 Member:
 - story
 - image
-authors: 
+authors:
 - Example
 key: site

@@ -1,5 +1,5 @@
 doctype( :html4_strict )
-html do 
+html do
   head do
     story( :head, :title => @title )
   end

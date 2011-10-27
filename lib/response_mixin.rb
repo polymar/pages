@@ -6,5 +6,5 @@ module Pages
     alias_method :models, :model
     def find( m, n ); model( m ).find(n) ; end
     def all( m ) ; model(m).all ; end
-	end  
+	end
 end
