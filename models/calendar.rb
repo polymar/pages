@@ -1,9 +1,9 @@
 module Pages
-	
-	module Models 
-		
+
+	module Models
+
 		class Calendar < Default
-		  
+
 		  def self.[]( domain )
         Class.new( self ) do
           include( Filebase::Model[ :db / domain / superclass.basename.snake_case ] )
@@ -25,13 +25,13 @@ module Pages
 
         end
       end
-		  
+
 		  def self.associate( domain )
   		  has_many :events, :class => Pages::Models::Event[ domain ]
   		end
-		  
+
 		end
-		
+
 	end
-	
+
 end

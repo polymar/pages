@@ -8,24 +8,24 @@ p.subtitle @blog.summary if @blog.summary
 div.entries do
 
  	@blog.entries.sort_by(&:published).reverse[0..4].each do | entry |
-	
+
 	  h2 do
 	    a entry.title, :href => "/#{entry.name}/"
 	  end
-	  
+
     if entry.author and (Date === entry.published or Time === entry.published)
       p.byline do
         text 'by '; span.author entry.author
 		text ' on '; span.date entry.published.strftime('%b %d, %Y')
       end
 	end
-	  
+
     format( :content => entry.summary, :format => entry.format )
-    
+
     p do
       a 'More ...', :href => "/#{entry.name}/"
     end
-    
+
 	end
 
 end

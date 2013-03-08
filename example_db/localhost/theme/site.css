@@ -1,8 +1,8 @@
-* { margin: 0; padding: 0; 
+* { margin: 0; padding: 0;
      font-family: helvetica, verdana, sans-serif;  }
 
 /* basic page outline */
-body { 
+body {
     background: #110f0d;
 }
 
@@ -16,11 +16,11 @@ h2 { font-size: 17pt; }
 h2, p, li { font-size: 12pt; }
 p { text-align: justify; }
 h3 { font-size: 12pt; }
-p.subtitle { 
+p.subtitle {
   display: none;
   margin-top: 1px; margin-left: 2px;
-  font-family: verdana, arial, sans-serif; 
-  font-size: 14px; font-style: italic; 
+  font-family: verdana, arial, sans-serif;
+  font-size: 14px; font-style: italic;
   border-bottom: 1px dotted #390; }
 p.warning, p.error { border-top: 1px solid; border-bottom: 1px solid; }
 p.warning { color: orange; }
@@ -34,13 +34,13 @@ a:hover { color: #110f0d; text-decoration: underline; }
 /* page layout */
 /*div.banner > div.menu { height: 30px; }*/
 /*div.banner > div.title h1 {
-  font-size:  15pt; text-align: right; letter-spacing: 0; padding-top: 20px; margin-right:30px; 
+  font-size:  15pt; text-align: right; letter-spacing: 0; padding-top: 20px; margin-right:30px;
   color: #110f0d; margin-bottom: 0;
 }*/
 div.banner.image { width:1050px; background-image:  url( /images/banner );}
 /*div.banner h1 { font-size: 40px; }*/
 div.banner ul.menu { display: block; float: right; margin-right: 30px; }
-div.banner ul.menu li { display: block; float: right; margin-left: 20px; text-transform: uppercase; font-size: 14px; } 
+div.banner ul.menu li { display: block; float: right; margin-left: 20px; text-transform: uppercase; font-size: 14px; }
 div.banner img { width: 1050px; }
 /*div.menu { height: 50px; background: url(/images/bar-bg) repeat-x; }*/
 
@@ -57,7 +57,7 @@ div.sidebar hr { margin: 20px 0; }
 div.sidebar div.block { margin-bottom: 30px; }
 
 div.main { border-top: 2px solid ##110f0d; padding: 50px 35px; min-height: 400px; margin-left: 320px; }
-    
+
 /* default image formatting */
 /*img { border: none }*/
 #home img { width:180px; height:250px; }
@@ -79,8 +79,8 @@ div.entries h2 { font-family: verdana, arial, sans-serif; margin-top: 20px; }
 
 span.author, span.date { font-weight: bold; }
 
-p.more { font-family: verdana, arial, sans-serif; font-size: 12pt; 
-  padding-bottom: 20px; 
+p.more { font-family: verdana, arial, sans-serif; font-size: 12pt;
+  padding-bottom: 20px;
   border-bottom: 1px solid #390; }
 
 div.footer { clear: both; text-align: center;  }

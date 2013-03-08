@@ -1,4 +1,4 @@
-div.quick_add do 
+div.quick_add do
   a.open 'Add a new event.', :href => '#'
   form.event :action => '/admin/event/', :method => 'post' do
     a.close do

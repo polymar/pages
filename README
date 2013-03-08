@@ -2,4 +2,3 @@ Pages expects to find FileBase datastores for each domain in a directory named "
 
   $ mkdir db
   $ cp -pr example_db/localhost db/
-  

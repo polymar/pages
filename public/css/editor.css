@@ -22,9 +22,9 @@ div.property select {
 div.sidebar div.property input,
 div.sidebar div.property textarea,
 div.sidebar div.property select { float: left; width: 150px; font-size: 11px;  }
-div.sidebar label { float: left; width: 75px; text-align: right; 
+div.sidebar label { float: left; width: 75px; text-align: right;
   margin-right: 10px; padding-top: 5px; }
-div.sidebar p.help { clear: both; margin-left: 85px; 
+div.sidebar p.help { clear: both; margin-left: 85px;
   font-size: 11px; }
 
 div.main div.property input.text { width: 500px; }

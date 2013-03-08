@@ -1,4 +1,4 @@
-div.quick_add do 
+div.quick_add do
   a.open 'Add a new story.', :href => '#'
   form.story :action => '/admin/story/', :method => 'post' do
     a.close do

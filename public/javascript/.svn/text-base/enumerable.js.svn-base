@@ -4,21 +4,21 @@ var Hash = function(object) {
   }
 };
 Hash.convert = function(object) {
-  for( var k in Hash.prototype ) { object[k] = Hash.prototype[k] }; return object; 
+  for( var k in Hash.prototype ) { object[k] = Hash.prototype[k] }; return object;
 };
 Hash.prototype = {
-  each: function( fn ) { 
+  each: function( fn ) {
     for( var k in this ) {
       if (! ( typeof this[k] == 'function' )) { fn({0:k, 1: this[k], key: k, value: this[k]}) }
     }
-    return this; 
+    return this;
   },
   merge: function( hash ) {
     var self = this;
     new Hash(hash).each( function(item) { self[item.key] = item.value }); return this;
   }
 };
-Array.convert = function(object) { 
+Array.convert = function(object) {
   if (object instanceof Array ) { return object }
   else if (object.toArray) { return object.toArray() }
   else {
@@ -30,7 +30,7 @@ Array.prototype.each = function( fn ) {
   for(var i = 0; i<this.length; i++) { fn(this[i]) }; return this;
 };
 Array.prototype.flatten = function() {
-  var r = new Array(); 
+  var r = new Array();
   for(var i = 0;i<this.length;i++) {
     if ( this[i] instanceof Array ) {
       var x = this[i].flatten();
@@ -40,15 +40,15 @@ Array.prototype.flatten = function() {
   return r;
 };
 Array.prototype.compact = function() {
-  var r = new Array(); 
-  for(var i=0;i<this.length;i++) { 
-    if (this[i]!=null) { r.push(this[i]); } 
+  var r = new Array();
+  for(var i=0;i<this.length;i++) {
+    if (this[i]!=null) { r.push(this[i]); }
   }
   return r;
 };
 var Enumerable = {
-  aggregate: function( rval, fn ) { 
-    this.each( function( x ) { rval = fn(rval,x) } ); return rval; 
+  aggregate: function( rval, fn ) {
+    this.each( function( x ) { rval = fn(rval,x) } ); return rval;
   },
   filter: function( fn ) {
     var r = []; this.each( function(x) { if (fn(x)) { r.push(x) } }); return r;

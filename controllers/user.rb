@@ -1,18 +1,18 @@
 module Pages
   module Controllers
     class User < Default
-      
+
       def assign( assigns )
         assigns[ :key ] ||= assigns['email'].downcase.gsub(/\s+/,'-').gsub(/[^\w\-]/,'-')
         assigns[ :date_joined ] ||= Time.now
         assigns
       end
-      
+
 			def authenticate
 			  email_key = attributes[ :email ].gsub(/\s+/,'-').gsub(/[^\w\-]/,'-')
 			  user = find( email_key )
 			  auth = false
-			  if(user && ( user['email'] == attributes[:email] )  && 
+			  if(user && ( user['email'] == attributes[:email] )  &&
 					( user['password'] == attributes[:password] ))
 			    auth = true
 			  end
@@ -26,12 +26,12 @@ module Pages
   			  # redirect(paths.login)
   			end
 			end
-			
+
 			def logout
 			  session.clear
 			  redirect('/')
 		  end
-      
+
     end
   end
 end

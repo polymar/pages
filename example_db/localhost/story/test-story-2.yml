@@ -1,4 +1,4 @@
---- 
+---
 format: mab
 blog: ""
 title: test story 2
@@ -8,8 +8,8 @@ author: Example
 summary: "i'm on the way"
 content: |-
   p "Well, using this think is easy after all.."
-  
-  p "Remember, this is what you need:" 
+
+  p "Remember, this is what you need:"
   ul.rooms do
      li {"#Waves"}
      li {"#Filebase"}

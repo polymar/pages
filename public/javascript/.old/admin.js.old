@@ -1,5 +1,5 @@
 $(document).ready( function() {
-  
+
   $('input[type="submit"]').each( function() {
     $(this).replaceWith("<a class='submit' href='#'>"+$(this).val()+"</a>");
   });
@@ -23,7 +23,7 @@ $(document).ready( function() {
      }
     });
   }
-  
+
   $('div.buttons a.submit').click( function() {
     var form = $(this).parents('form');
     var failed = form.find('.required')
@@ -33,17 +33,17 @@ $(document).ready( function() {
     if ( failed.size() == 0 ) { form.submit(); }
     return false;
   });
-  
-  
+
+
   $('#site, #stories, #images').each( function() {
     if ( this.scrollHeight > 580 ) {
       $(this).css({'overflow-y': 'scroll'});
-    } 
+    }
   });
   $('#galleries, #blogs').each( function() {
     if ( this.scrollHeight > 290 ) {
       $(this).css({'overflow-y': 'scroll'});
-    } 
+    }
   });
   $('div.list').hover( function() {
     $(this).css({ border: '1px solid #333'});
@@ -52,7 +52,7 @@ $(document).ready( function() {
     $(this).find('h2, h3').css({color: '#999' });
     $(this).css({ border: '1px solid #999'});
   });
-  
+
   $('a.delete').click( function() {
     var href = $(this).attr('href');
     $(this).hide();
@@ -63,12 +63,12 @@ $(document).ready( function() {
     );
     $('a.yes').click( function() {
       var el = this;
-      $.blockUI("Okay, just a second ...", 
+      $.blockUI("Okay, just a second ...",
         { 'font-weight': 'bold', border: 'none' });
-      $.ajax({ 
-        type: 'delete', 
-        url: href, 
-        success: function() { 
+      $.ajax({
+        type: 'delete',
+        url: href,
+        success: function() {
           window.location = '/admin';
         },
         error: function() {

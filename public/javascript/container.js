@@ -10,7 +10,7 @@ $(document).ready( function() {
     $('ul.container:first').css({clear: 'both'})
     $('ul.container li').draggable({helper:'clone'});
     $('ul.container').droppable({
-     accept: 'li', tolerance: 'pointer', 
+     accept: 'li', tolerance: 'pointer',
      drop: function(ev,ui) { $(this).append( ui.draggable.element ); }
     });
   }

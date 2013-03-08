@@ -23,7 +23,7 @@ Cruiser.String = {
   map: function( args, f ) {
   	var g = function( s, p ) { return f.apply( s, p ); }
   	return  args.inject( this, g );
-  }, 
+  },
   toCharArray: String.prototype.toArray,
   toArray: function( separator ) {
   	if ( separator ) {

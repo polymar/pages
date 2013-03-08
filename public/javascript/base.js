@@ -25,10 +25,10 @@ $(document).ready( function() {
 		    	$(this).replaceWith("<input type=hidden name="+tag+" value="+$(this)[0].id+">");
 			});
 		}
-		form.submit(); 
+		form.submit();
 	}
     return false;
   });
-  
-  
+
+
 });

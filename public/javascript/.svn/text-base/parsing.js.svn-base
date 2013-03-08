@@ -9,8 +9,8 @@ Cruiser.Parser = {
 	}
 };
 var Parser = {};
-Parser.Exception = function(s) { 
-	 this.message = "Parse error at '" + s.substring(0,10) + " ...'"; 
+Parser.Exception = function(s) {
+	 this.message = "Parse error at '" + s.substring(0,10) + " ...'";
 };
 Parser.Operators = {
   //
@@ -30,18 +30,18 @@ Parser.Operators = {
 	},
 
   stoken: function(s) { // string token
-    return Parser.Operators.rtoken( new RegExp('^'+s) ); 
+    return Parser.Operators.rtoken( new RegExp('^'+s) );
   },
 
 	//
 	// Atomic Operators
-	// 
-	
+	//
+
 	until: function(p) {
 		return function(s) {
 			var qx = [], rx = null;
-			while( s.length ) { 
-				try { rx = p.call(this,s); } 
+			while( s.length ) {
+				try { rx = p.call(this,s); }
 				catch (e) { qx.push(rx[0]); s = rx[1]; continue; }
 				break;
 			}
@@ -49,9 +49,9 @@ Parser.Operators = {
 		};
 	},
 	many: function( p ) {
-	  var _ = Parser.Operators; 
+	  var _ = Parser.Operators;
 		return function(s) {
-			var rx = [], r = null; while (s.length) { 
+			var rx = [], r = null; while (s.length) {
 				try { r = p.call(this,s); } catch (e) { return [ rx, s ]; }
 				rx.push(r[0]); s = r[1];
 			}
@@ -76,7 +76,7 @@ Parser.Operators = {
 	  return p ? function(s) { var r = null; r = p.call(this,s); return [ null, r[1] ]; } : null;
 	},
 	product: function() {
-	  var _ = Parser.Operators, px = arguments[0], 
+	  var _ = Parser.Operators, px = arguments[0],
 	    qx = Array.prototype.slice.call(arguments, 1), rx = [];
 	  for ( var i = 0 ; i < px.length ; i++ ) {
 	    rx.push( _.each( px[i], qx ) );
@@ -86,27 +86,27 @@ Parser.Operators = {
 	// vector operators
 	any: function() {
 	  var px = arguments;
-		return function(s) { 
+		return function(s) {
 			var r = null;
-			for (var i = 0; i<px.length; i++) { 
+			for (var i = 0; i<px.length; i++) {
 			  if ( px[i] == null ) { continue; }
 				try { r = (px[i].call(this,s)); } catch(e) { r = null; }
-				if (r) return r; 
-			} 
+				if (r) return r;
+			}
 			throw new Parser.Exception(s);
 		}
 	},
-	each: function() { 
+	each: function() {
 	  var px = arguments;
-		return function(s) { 
+		return function(s) {
 			var rx = [], r = null;
-			for ( var i = 0; i < px.length ; i++) { 
+			for ( var i = 0; i < px.length ; i++) {
 			  if ( px[i] == null ) { continue; }
 				try { r = (px[i].call(this,s)); }
 				catch(e) { throw new Parser.Exception(s); }
 				rx.push(r[0]); s = r[1];
-			}; 
-			return [ rx, s]; 
+			};
+			return [ rx, s];
 		}
 	},
 	sequence: function(px,d,c) {
@@ -123,25 +123,25 @@ Parser.Operators = {
 	    if (!r) { throw new Parser.Exception(s); }
 	    if (q) { throw new Parser.Exception(q[1]); }
       if ( c ) {
-        try { r = c.call( this, r[1] ) } 
+        try { r = c.call( this, r[1] ) }
         catch(e) { throw new Parser.Exception(r[1]); }
       }
       return [ rx, (r?r[1]:s) ];
     }
 	},
-	all: function() { 
-	  var px = arguments, _ = Parser.Operators; 
-	  return _.each( _.optional( px ) ); 
+	all: function() {
+	  var px = arguments, _ = Parser.Operators;
+	  return _.each( _.optional( px ) );
 	},
 	//
 	// Composite Operators
 	//
-	between: function(d1,p,d2) { 
-		var _ = Parser.Operators; d2 = d2||d1; 
+	between: function(d1,p,d2) {
+		var _ = Parser.Operators; d2 = d2||d1;
 		var _fn = _.each( _.ignore( d1 ), p, _.ignore( d2 ) );
-		return function(s) { 
-		  var rx = _fn.call(this,s); 
-		  return [ [ rx[0][0],r[0][2] ], rx[1] ]; 
+		return function(s) {
+		  var rx = _fn.call(this,s);
+		  return [ [ rx[0][0],r[0][2] ], rx[1] ];
 		}
 	},
 	list: function(p,d,c) {
@@ -156,13 +156,13 @@ Parser.Operators = {
 	  return function(s) {
 	    var r, best = [ [], s ];
 	    for ( var i = 0; i < px.length ; i++ ) {
-	      var last = (px.length==1); 
+	      var last = (px.length==1);
 	      var q = null, p = null; r = null;
   	    try { r = px[i].call(this,s); } catch(e) { continue; }
   	    if ( r[1].length > 0 && ! last ) {
-  	      try { q = d.call(this,r[1]); } catch(e) { last = true; }  	      
+  	      try { q = d.call(this,r[1]); } catch(e) { last = true; }
   	    } else { last = true; }
-	      if ( ! last ) { 
+	      if ( ! last ) {
 	        if ( q[1].length > 0 ) {
     	      var qx = []; for( var j = 0; j < px.length ; j++ ) {
     	        if ( i!=j ) { qx.push(px[j]); }
@@ -179,7 +179,7 @@ Parser.Operators = {
       }
       if ( !r ) { return best; }
       if ( c ) {
-        try { c.call( this, r[1] ); } 
+        try { c.call( this, r[1] ); }
         catch(e) { throw new Parser.Exception(r[1]); }
       }
       return best;
@@ -188,7 +188,7 @@ Parser.Operators = {
 	forward: function( gr, fname ) {
 		return function(s) { return gr[fname].call(this,s); }
 	},
-	
+
 	//
 	// Translation Operators
 	//
@@ -198,7 +198,7 @@ Parser.Operators = {
   process: function(rule,fn) {
     return function(s) {  var r = rule.call(this,s); return [ fn.call(this,r[0]),r[1] ]; }
   },
-  cache: function(rule) { 
+  cache: function(rule) {
     var cache = {}, val = null; return function(s) {
       try{ val = cache[s] = ( cache[s] || rule.call(this,s) ); } catch(e) { val = cache[s] = e; }
       if ( val instanceof Parser.Exception ) { throw val; }
@@ -214,7 +214,7 @@ Parser.Operators = {
 };
 
 (function() {
-  var _ = Parser.Operators, 
+  var _ = Parser.Operators,
   _cached = function( op ) {
     return function() {
       var cache = {}, fn = op.apply(null,arguments); val = null;
@@ -222,7 +222,7 @@ Parser.Operators = {
         try { val = cache[s] = ( cache[s] || fn.call(this,s) ); }
         catch( e ) { val = cache[s] = e; }
         if ( val instanceof Parser.Exception ) { throw val; }
-        else { return val; } 
+        else { return val; }
       }
     }
   },
@@ -233,7 +233,7 @@ Parser.Operators = {
         var args = Array.prototype.slice.call(arguments), rx = [];
         for ( var i = 0, px = args.shift() ; i < px.length ; i++ ) {
           args.unshift(px[i]); rx.push( op.apply( null, args ) ); args.shift();
-        } 
+        }
         return rx;
       } else { return op.apply( null, arguments ); }
     }
@@ -241,11 +241,11 @@ Parser.Operators = {
   gx = 'optional not ignore cache'.split(/\s/);
   for ( var i = 0 ; i < cx.length ; i++ ) { _[ cx[i] ] = _cached( _[ cx[i] ] ); }
   for ( var i = 0 ; i < gx.length ; i++ ) { _[ gx[i] ] = _generator( _[ gx[i] ] ); }
-  //_.set = function(px,d,c) { 
-  //  return function(s) { 
+  //_.set = function(px,d,c) {
+  //  return function(s) {
   //    var rx = _._set(px,d,c).call(this,s);
-  //    return (( rx[0] instanceof Array ) ? 
-  //      [ rx[0].flatten().compact(), rx[1] ] : rx ); 
+  //    return (( rx[0] instanceof Array ) ?
+  //      [ rx[0].flatten().compact(), rx[1] ] : rx );
   //  };
   //};
-}()); 
+}());

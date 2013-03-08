@@ -9,12 +9,12 @@ $(document).ready( function() {
     );
     $('a.yes').click( function() {
       var el = this;
-      $.blockUI("Okay, just a second ...", 
+      $.blockUI("Okay, just a second ...",
         { 'font-weight': 'bold', border: 'none' });
-      $.ajax({ 
-        type: 'delete', 
-        url: href, 
-        success: function() { 
+      $.ajax({
+        type: 'delete',
+        url: href,
+        success: function() {
           window.location = '/admin';
         },
         error: function() {
@@ -34,5 +34,5 @@ $(document).ready( function() {
     if ( date === null ) { date = Date.today(); }
     $(this).val( date.toString('yyyy-MM-dd'));
   });
-  
-}); 
+
+});

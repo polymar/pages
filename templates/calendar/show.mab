@@ -1,9 +1,9 @@
 layout :show, :title => @calendar.label do
 
   div.main.calendar :id => @name do
-  
+
     view( :calendar, :content, :calendar => @calendar )
-    
+
   end
 
 end

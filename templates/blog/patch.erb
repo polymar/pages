@@ -5,9 +5,9 @@
 -      <description><%= @blog.subtitle %></description>
 +      <description><%= Erubis::XmlHelper.escape_xml @blog.subtitle %></description>
        <language>en</language>
- 
-       <% 
-         @blog.entries.sort_by(&:published).reverse.each do | entry | 
+
+       <%
+         @blog.entries.sort_by(&:published).reverse.each do | entry |
        %>
          <item>
 -          <title><%= entry.title %></title>
